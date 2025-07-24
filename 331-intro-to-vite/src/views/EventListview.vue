@@ -47,18 +47,20 @@ watchEffect(() => {
       <EventCategory :event="event" />
     </div>
     <div class="pagination">
-      <RouterLink 
+      <RouterLink
         id="page-prev"
         :to="{ name: 'event-list-view', query: { page: page - 1, perPage: perPage } }"
-        rel="prev" 
+        rel="prev"
         v-if="page != 1"
-      >&#60; Prev Page</RouterLink>
-      <RouterLink 
+        >&#60; Prev Page</RouterLink
+      >
+      <RouterLink
         id="page-next"
         :to="{ name: 'event-list-view', query: { page: page + 1, perPage: perPage } }"
         rel="next"
         v-if="hasNexPage"
-      >Next Page &#62;</RouterLink>
+        >Next Page &#62;</RouterLink
+      >
     </div>
   </div>
 </template>
