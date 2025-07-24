@@ -3,6 +3,7 @@ import PassengerCard from '@/components/PassengerCard.vue'
 import type { Passenger } from '@/types'
 import { ref, onMounted } from 'vue'
 import PassengerService from '@/services/PassengerService'
+import { mockPassengers } from '@/data/mockData'
 
 const passengers = ref<Passenger[]>([])
 const loading = ref(false)
@@ -10,15 +11,19 @@ const error = ref('')
 
 onMounted(() => {
   loading.value = true
+  
+  // ลอง real API ก่อน ถ้าไม่ได้ให้ใช้ mock data
   PassengerService.getPassengers(0, 20)
     .then((response) => {
       passengers.value = response.data.data
       loading.value = false
     })
     .catch((err) => {
-      console.error('There was an error!', err)
-      error.value = 'Failed to load passengers'
+      console.error('API Error, using mock data:', err)
+      // ใช้ mock data แทน
+      passengers.value = mockPassengers
       loading.value = false
+      error.value = '' // ไม่แสดง error เพราะมี mock data
     })
 })
 </script>
