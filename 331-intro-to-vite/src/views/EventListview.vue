@@ -2,9 +2,24 @@
 import EventCard from '@/components/EventCard.vue'
 import EventCategory from '@/components/EventCategory.vue'
 import type { Event } from '@/types'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
 
-const events = ref<Event[]>([
+const events = ref<Event[]>([])
+
+onMounted(() => {
+  axios
+    .get('https://my-json-server.typicode.com/KHIMMYzy/mock-events/events')
+    .then((response) => {
+      console.log(response.data)
+      events.value = response.data
+    })
+    .catch((error) => {
+      console.error('There was an error!', error)
+    })
+})
+
+/*const events = ref<Event[]>([
   {
     id: 5928101,
     category: 'animal welfare',
@@ -38,7 +53,7 @@ const events = ref<Event[]>([
     petsAllowed: false,
     organizer: 'Carey Wales',
   },
-])
+])*/
 </script>
 
 <template>
