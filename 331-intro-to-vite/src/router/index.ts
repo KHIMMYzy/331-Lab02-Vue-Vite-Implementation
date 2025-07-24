@@ -6,6 +6,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import EventRegisterView from '../views/event/RegisterView.vue'
 import EventEditView from '../views/event/EditView.vue'
 import EventLayoutView from '@/views/event/LayoutView.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,6 +50,17 @@ const router = createRouter({
       path: '/students',
       name: 'student-list',
       component: StudentListView,
+    },
+    {
+      path: '/404/:resource',
+      name: '404-resource-view',
+      component: NotFoundView,
+      props: true,
+    },
+    {
+      path: '/:catchAll(.*)',
+      name: 'not-found',
+      component: NotFoundView,
     },
   ],
 })
