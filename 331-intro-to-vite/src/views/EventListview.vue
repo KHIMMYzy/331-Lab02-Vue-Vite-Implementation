@@ -16,7 +16,6 @@ onMounted(() => {
       console.error('There was an error!', error)
     })
 })
-
 </script>
 
 <template>
